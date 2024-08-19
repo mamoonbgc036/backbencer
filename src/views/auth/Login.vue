@@ -21,7 +21,7 @@
             <label
               for="userEmail"
               class="form-label text-info"
-            >Email address</label>
+            >Phone Number</label>
             <input
               type="text"
               v-model="form.phone"
