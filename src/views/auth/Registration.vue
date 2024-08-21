@@ -37,10 +37,10 @@
             <label
               for="userEmail"
               class="form-label text-info"
-            >Phone Number</label>
+            >Email</label>
             <input
               type="text"
-              v-model="form.phone"
+              v-model="form.email"
               class="form-control"
               id="userEmail"
               placeholder="Phone number"
@@ -50,7 +50,7 @@
               v-if="errors.phone != undefined"
               class="text-danger"
             >
-              {{ errors.phone[0] }}
+              {{ errors.email[0] }}
             </p>
           </div>
           <div
@@ -67,17 +67,13 @@
               v-model="form.type"
             >
               <option
-                value="Single"
+                value="1"
                 data-select2-id="3"
-              >Single Worker</option>
+              >Admin</option>
               <option
-                value="Company"
+                value="2"
                 data-select2-id="17"
-              >Company</option>
-              <option
-                value="Employer"
-                data-select2-id="17"
-              >Employer</option>
+              >User</option>
             </select>
             <p
               v-if="errors.type != undefined"
@@ -164,7 +160,7 @@ export default {
     return {
       form: {
         name: "",
-        phone: "",
+        email: "",
         type: "",
         password: "",
         image: null,
