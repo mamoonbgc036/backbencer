@@ -27,7 +27,7 @@
               v-model="form.email"
               class="form-control"
               id="phone"
-              placeholder="Phone"
+              placeholder="Email"
               name="phone"
             />
             <p

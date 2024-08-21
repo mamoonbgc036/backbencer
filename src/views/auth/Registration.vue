@@ -43,11 +43,11 @@
               v-model="form.email"
               class="form-control"
               id="userEmail"
-              placeholder="Phone number"
-              name="phone"
+              placeholder="Email"
+              name="email"
             />
             <p
-              v-if="errors.phone != undefined"
+              v-if="errors.email != undefined"
               class="text-danger"
             >
               {{ errors.email[0] }}
