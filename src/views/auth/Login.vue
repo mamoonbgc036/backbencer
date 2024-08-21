@@ -6,7 +6,7 @@
           href="#"
           class="noble-ui-logo logo-light d-block mb-2"
         >backbencer</a>
-        <h5 class="text-warning fw-normal mb-4">Admin Login</h5>
+        <h5 class="text-warning fw-normal mb-4">Login</h5>
         <h2
           class="text-danger"
           v-show="errors.warning"
@@ -21,10 +21,10 @@
             <label
               for="userEmail"
               class="form-label text-info"
-            >Phone Number</label>
+            >Email</label>
             <input
               type="text"
-              v-model="form.phone"
+              v-model="form.email"
               class="form-control"
               id="phone"
               placeholder="Phone"
@@ -34,7 +34,7 @@
               class="text-danger"
               v-if="errors.phone != undefined"
             >
-              {{ errors.phone[0] }}
+              {{ errors.email[0] }}
             </p>
           </div>
           <div class="mb-3">
@@ -95,7 +95,7 @@ export default {
   data() {
     return {
       form: {
-        phone: "",
+        email: "",
         password: "",
       },
       errors: [],

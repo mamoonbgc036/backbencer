@@ -38,13 +38,13 @@
                     <td>{{ product.old_price }}</td>
                     <td class="py-1">
                       <img
-                        v-for="(image, index) in product.product_images"
+                        v-for="(image, index) in product.images"
                         :key="index"
                         :src="image.url"
                         alt="image"
                       >
                     </td>
-                    <td>{{ product.category_id }}</td>
+                    <td>{{ product.categoryName }}</td>
                     <td>
                       <div class="d-flex">
                         <router-link
@@ -68,6 +68,7 @@
                         <button
                           @click="confirmDelete(product.id)"
                           class="btn btn-sm btn-danger"
+                          v-if="user.type == 1"
                         ><svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -104,6 +105,7 @@ export default {
   data() {
     return {
       products: [],
+      user: "",
     };
   },
   components: {
@@ -111,14 +113,19 @@ export default {
   },
   mounted() {
     this.getProducts();
+    this.get_user();
   },
   methods: {
+    get_user() {
+      axios_client.get(`/v1/get-user`).then((res) => {
+        this.user = res.data;
+      });
+    },
     getProducts() {
       axios_client
         .get("/v1/product")
         .then((response) => {
           this.products = response.data.data;
-          console.log(response.data.data, "testing");
         })
         .catch((errors) => {
           console.log(errors);
@@ -146,16 +153,20 @@ export default {
       axios_client
         .delete(`/v1/product/${productId}`)
         .then((response) => {
+          // Remove the deleted product from the list
           this.products = this.products.filter(
             (product) => product.id !== productId
           );
+          // Show success message
           Swal.fire("Deleted!", "Your product has been deleted.", "success");
         })
         .catch((error) => {
           console.error("There was an error deleting the product!", error);
+          // Show error message
           Swal.fire(
             "Failed!",
-            "There was an error deleting your product.",
+            error.response.data.message ||
+              "There was an error deleting your product.",
             "error"
           );
         });

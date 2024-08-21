@@ -7,7 +7,7 @@
           href="#"
           class="noble-ui-logo logo-light d-block mb-2"
         >backbencer</a>
-        <h5 class="text-warning fw-normal mb-4">Create admin account.</h5>
+        <h5 class="text-warning fw-normal mb-4">Create account.</h5>
         <form
           @submit.prevent="createUser"
           class="forms-sample"

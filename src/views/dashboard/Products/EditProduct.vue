@@ -48,7 +48,7 @@
                   <div class="col">
                     <label class="form-label">Old Price</label>
                     <input
-                      v-model="form.oldPrice"
+                      v-model="form.old_price"
                       type="text"
                       class="form-control"
                       id="exampleInputUsername1"
@@ -84,7 +84,7 @@
                 >
                   <label class="form-label">Select Category</label>
                   <select
-                    v-model="form.categoryId"
+                    v-model="form.category_id"
                     class="js-example-basic-single form-select select2-hidden-accessible"
                     data-width="100%"
                     data-select2-id="1"
@@ -96,7 +96,7 @@
                       :key="depart.id"
                       :value="depart.id"
                       data-select2-id="3"
-                      :selected="depart.id === form.categoryId"
+                      :selected="depart.id === form.category_id"
                     >{{ depart.name }}</option>
                   </select>
                   <p
@@ -129,7 +129,7 @@
                     class="text-danger"
                   ></p>
                 </div>
-                <div
+                <!-- <div
                   class="row mb-3"
                   data-select2-id="7"
                 >
@@ -138,7 +138,7 @@
                     ref="imageDropzone"
                     class="dropzone"
                   ></div>
-                </div>
+                </div> -->
                 <div class="row mb-3 text-center">
                   <div class="col">
                     <button
@@ -158,28 +158,28 @@
 <script>
 import { onMounted } from "vue";
 import Layout from "../Layout.vue";
-import { Dropzone } from "dropzone";
+// import { Dropzone } from "dropzone";
 import axios_client from "../../../axios-client";
 export default {
   setup() {
-    onMounted(() => {
-      const dropzone = new Dropzone("div#myId", {
-        url: "/file/post", // URL for uploading files
-        maxFilesize: 2, // Maximum file size in megabytes
-        addRemoveLinks: true, // Show remove links for uploaded files
-        autoProcessQueue: false,
-      });
+    // onMounted(() => {
+    //   const dropzone = new Dropzone("div#myId", {
+    //     url: "/file/post", // URL for uploading files
+    //     maxFilesize: 2, // Maximum file size in megabytes
+    //     addRemoveLinks: true, // Show remove links for uploaded files
+    //     autoProcessQueue: false,
+    //   });
 
-      // You can add event listeners or handle events here if needed
-      dropzone.on("success", (file, response) => {
-        console.log("File uploaded:", file);
-        console.log("Server response:", response);
-      });
+    //   // You can add event listeners or handle events here if needed
+    //   dropzone.on("success", (file, response) => {
+    //     console.log("File uploaded:", file);
+    //     console.log("Server response:", response);
+    //   });
 
-      dropzone.on("error", (file, errorMessage, xhr) => {
-        console.error("Error uploading file:", errorMessage);
-      });
-    });
+    //   dropzone.on("error", (file, errorMessage, xhr) => {
+    //     console.error("Error uploading file:", errorMessage);
+    //   });
+    // });
 
     return {};
     // Rest of your code...
@@ -189,9 +189,9 @@ export default {
       form: {
         title: "",
         description: "",
-        oldPrice: "",
+        old_price: "",
         price: "",
-        categoryId: "",
+        category_id: "",
         unit: "",
       },
       category: [],
@@ -224,30 +224,26 @@ export default {
         });
     },
     updat_product() {
-      const formData = new FormData();
-      let dataToUpdate = this.form;
-      let dropzone = this.$refs.imageDropzone.dropzone;
-      let files = dropzone.files;
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        formData.append("images[]", file);
-      }
+      // const formData = new FormData();
+      // let dataToUpdate = this.form;
+      // let dropzone = this.$refs.imageDropzone.dropzone;
+      // let files = dropzone.files;
+      // for (let i = 0; i < files.length; i++) {
+      //   const file = files[i];
+      //   formData.append("images[]", file);
+      // }
 
-      formData.append("productData", JSON.stringify(this.form));
-
-      for (let pair of formData.entries()) {
-        console.log(pair[0] + ", " + pair[1]);
-      }
+      // formData.append("productData", JSON.stringify(this.form));
 
       axios_client
-        .put(`/v1/product/${this.$route.params.id}`, formData)
+        .put(`/v1/product/${this.$route.params.id}`, this.form)
         .then((response) => {
           console.log(response.data);
           this.$router.push("/user/product/index");
         })
         .catch((error) => {
-          this.errors = error.response.data;
-          console.log(error.response.data);
+          this.errors = error.response.data.errors;
+          // console.log(error.response.data.errors.description);
         });
     },
     async getProductInfo() {
@@ -256,10 +252,10 @@ export default {
           `/v1/product/${this.$route.params.id}`
         );
 
-        const { title, description, oldPrice, price, categoryId, unit } =
+        const { title, description, old_price, price, category_id, unit } =
           product.data.data;
 
-        this.form = { title, description, oldPrice, price, categoryId, unit };
+        this.form = { title, description, old_price, price, category_id, unit };
 
         // let images = product.data.data.images;
         // for (let index = 0; index < images.length; index++) {
