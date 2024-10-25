@@ -1,6 +1,5 @@
 <h1 align="center">Backbencer Code</h1>
-__by username=admin@gmail.com and pass= mamoon and browse the project at https://ubiquitous-sawine-5fef61.netlify.app__
-**This text will be bold**
+By **username=admin@gmail.com** and **pass= mamoon** and browse the project at [https://ubiquitous-sawine-5fef61.netlify.app](https://ubiquitous-sawine-5fef61.netlify.app)
 
 ## How To Use
 
