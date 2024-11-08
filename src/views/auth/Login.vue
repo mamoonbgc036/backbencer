@@ -2,6 +2,13 @@
   <Layout>
     <div class="col-md-8 ps-md-0">
       <div class="auth-form-wrapper px-4 py-5">
+        <!-- Display credentials -->
+        <div class="credentials-info mb-3">
+          <p class="text-secondary mb-1">Demo Credentials:</p>
+          <p class="text-info mb-1">Email: admin@gmail.com</p>
+          <p class="text-info">Password: mamoon</p>
+        </div>
+        <!-- Logo and Form Title -->
         <a
           href="#"
           class="noble-ui-logo logo-light d-block mb-2"
@@ -10,9 +17,9 @@
         <h2
           class="text-danger"
           v-show="errors.warning"
-        >
-          {{ errors.warning }}
-        </h2>
+        >{{ errors.warning }}</h2>
+
+        <!-- Login Form -->
         <form
           class="forms-sample"
           @submit.prevent="login"
@@ -67,9 +74,7 @@
             <label
               class="form-check-label"
               for="authCheck"
-            >
-              Remember me
-            </label>
+            >Remember me</label>
           </div>
           <div>
             <button
@@ -83,11 +88,14 @@
         <router-link
           to="/auth/register"
           class="d-block mt-3 text-warning"
-        >Not a user? Sign up</router-link>
+        >
+          Not a user? Sign up
+        </router-link>
       </div>
     </div>
   </Layout>
 </template>
+
 <script>
 import axios_client from "../../axios-client";
 import Layout from "./Layout.vue";
