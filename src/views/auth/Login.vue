@@ -5,90 +5,42 @@
         <!-- Display credentials -->
         <div class="credentials-info mb-3">
           <p class="text-secondary mb-1">Demo Credentials:</p>
-          <p class="text-info mb-1">Email: admin@gmail.com</p>
+          <p class="text-info mb-1">Email: mamoon@test.com</p>
           <p class="text-info">Password: mamoon</p>
         </div>
         <!-- Logo and Form Title -->
-        <a
-          href="#"
-          class="noble-ui-logo logo-light d-block mb-2"
-        >backbencer</a>
+        <a href="#" class="noble-ui-logo logo-light d-block mb-2">To Do App</a>
         <h5 class="text-warning fw-normal mb-4">Login</h5>
-        <h2
-          class="text-danger"
-          v-show="errors.warning"
-        >{{ errors.warning }}</h2>
+        <h2 class="text-danger" v-show="errors.warning">{{ errors.warning }}</h2>
 
         <!-- Login Form -->
-        <form
-          class="forms-sample"
-          @submit.prevent="login"
-        >
+        <form class="forms-sample" @submit.prevent="login">
           <div class="mb-3">
-            <label
-              for="userEmail"
-              class="form-label text-info"
-            >Email</label>
-            <input
-              type="text"
-              v-model="form.email"
-              class="form-control"
-              id="phone"
-              placeholder="Email"
-              name="phone"
-            />
-            <p
-              class="text-danger"
-              v-if="errors.phone != undefined"
-            >
+            <label for="userEmail" class="form-label text-info">Email</label>
+            <input type="text" v-model="form.email" class="form-control" id="phone" placeholder="Email" name="phone" />
+            <p class="text-danger" v-if="errors.email != undefined">
               {{ errors.email[0] }}
             </p>
           </div>
           <div class="mb-3">
-            <label
-              for="userPassword"
-              class="form-label text-info"
-            >Password</label>
-            <input
-              type="password"
-              v-model="form.password"
-              class="form-control"
-              id="userPassword"
-              autocomplete="current-password"
-              placeholder="Password"
-              name="password"
-            />
-            <p
-              class="text-danger"
-              v-if="errors.password != undefined"
-            >
+            <label for="userPassword" class="form-label text-info">Password</label>
+            <input type="password" v-model="form.password" class="form-control" id="userPassword"
+              autocomplete="current-password" placeholder="Password" name="password" />
+            <p class="text-danger" v-if="errors.password != undefined">
               {{ errors.password[0] }}
             </p>
           </div>
           <div class="form-check mb-3">
-            <input
-              type="checkbox"
-              class="form-check-input"
-              id="authCheck"
-            />
-            <label
-              class="form-check-label"
-              for="authCheck"
-            >Remember me</label>
+            <input type="checkbox" class="form-check-input" id="authCheck" />
+            <label class="form-check-label" for="authCheck">Remember me</label>
           </div>
           <div>
-            <button
-              type="submit"
-              class="btn btn-primary me-2 mb-2 mb-md-0 text-white"
-            >
+            <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0 text-white">
               Login
             </button>
           </div>
         </form>
-        <router-link
-          to="/auth/register"
-          class="d-block mt-3 text-warning"
-        >
+        <router-link to="/auth/register" class="d-block mt-3 text-warning">
           Not a user? Sign up
         </router-link>
       </div>
